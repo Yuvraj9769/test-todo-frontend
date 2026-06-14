@@ -22,7 +22,7 @@ jobs:
           key: ${{ secrets.FRONTEND_SSH_KEY }}
           
           script: |
-            cd ${{secrets.PROJECT_PATH}}
+            cd ${{ secrets.PROJECT_PATH }}
 
             git pull origin main
 
