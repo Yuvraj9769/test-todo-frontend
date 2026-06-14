@@ -1,0 +1,38 @@
+name: Deploy Frontend to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  nextjs-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Hostinger Nextjs
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          key: ${{ secrets.FRONTEND_SSH_KEY }}
+          
+          script: |
+            cd ${{secrets.PROJECT_PATH}}
+
+            git pull origin main
+
+            npm ci
+
+            npm run build
+
+            pm2 restart yuvrajfrontend
+
+
+
+
+            BACKEND_SSH_KEY
