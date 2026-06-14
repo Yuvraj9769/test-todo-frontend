@@ -17,8 +17,8 @@ jobs:
       - name: Deploy to Hostinger Nextjs
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HOSTINGER_HOST }}
-          username: ${{ secrets.HOSTINGER_USERNAME }}
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.FRONTEND_SSH_KEY }}
           
           script: |
@@ -31,8 +31,3 @@ jobs:
             npm run build
 
             pm2 restart yuvrajfrontend
-
-
-
-
-            BACKEND_SSH_KEY
